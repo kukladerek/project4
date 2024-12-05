@@ -48,11 +48,11 @@ void* messageListener(void *arg) {
 	// Incoming message from [source]: [message]
 	// put an end of line at the end of the message
 	int usr = open(uName, O_RDONLY);
-	struct message m;
+	struct message msg;
 	while(1){
-		ssize_t bytesRead = read(usr, &m, sizeof(m));
+		ssize_t bytesRead = read(usr, &msg, sizeof(msg));
 		if(bytesRead > 0){
-			printf("Incoming message from %s: %s\n", msg.source, m.m);
+			printf("Incoming message from %s: %s\n", msg.source, msg.msg);
 
 		}
 	}
@@ -88,8 +88,8 @@ int main(int argc, char **argv) {
 
     // TODO:
     // create the message listener thread
-	pthread_t listener_t;
-	pthread_create(&listener_t, NULL, messageListener, NULL);
+	pthread_t listener_thread;
+	pthread_create(&listener_thread, NULL, messageListener, NULL);
 
     while (1) {
 
@@ -125,8 +125,8 @@ int main(int argc, char **argv) {
 		// if no message is specified, you should print the followingA
  		// printf("sendmsg: you have to enter a message\n");
 		char *token = strtok(NULL, " ");
-		char *usr = malloc(20);
-		strcpy(usr, token);
+		char *user = malloc(20);
+		strcpy(user, token);
 		if(token == NULL){
 			printf("sendmsg: you have specify target user\n");
 			continue;
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
 			strcat(m, token);
 			token = strtok(NULL, " ");
 		}
-		sendmsg(uName, usr, m);
+		sendmsg(uName, user, m)
 
 		continue;
 	}
