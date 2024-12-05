@@ -125,8 +125,8 @@ int main(int argc, char **argv) {
 		// if no message is specified, you should print the followingA
  		// printf("sendmsg: you have to enter a message\n");
 		char *token = strtok(NULL, " ");
-		char *user = malloc(20);
-		strcpy(user, token);
+		char *usr = malloc(20);
+		strcpy(usr, token);
 		if(token == NULL){
 			printf("sendmsg: you have specify target user\n");
 			continue;
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
 			strcat(m, token);
 			token = strtok(NULL, " ");
 		}
-		sendmsg(uName, user, m)
+		sendmsg(uName, usr, m)
 
 		continue;
 	}
