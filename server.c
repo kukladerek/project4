@@ -23,7 +23,7 @@ int main() {
 	int target;
 	int dummyfd;
 	struct message req;
-	signal(SIGPIPE,SIG_IGN);
+	signal(SIGFPE,SIG_IGN);
 	signal(SIGINT,terminate);
 	server = open("serverFIFO",O_RDONLY);
 	dummyfd = open("serverFIFO",O_WRONLY);
