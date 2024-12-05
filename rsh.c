@@ -47,12 +47,12 @@ void* messageListener(void *arg) {
 	// following format
 	// Incoming message from [source]: [message]
 	// put an end of line at the end of the message
-	int usr = open(uName, O_RDONLY);
-	struct message msg;
+	int u = open(uName, O_RDONLY);
+	struct message m;
 	while(1){
-		ssize_t bytesRead = read(usr, &msg, sizeof(msg));
+		ssize_t bytesRead = read(u, &m, sizeof(m));
 		if(bytesRead > 0){
-			printf("Incoming message from %s: %s\n", msg.source, msg.msg);
+			printf("Incoming message from %s: %s\n", m.source, m.msg);
 
 		}
 	}
@@ -125,8 +125,8 @@ int main(int argc, char **argv) {
 		// if no message is specified, you should print the followingA
  		// printf("sendmsg: you have to enter a message\n");
 		char *token = strtok(NULL, " ");
-		char *usr = malloc(20);
-		strcpy(usr, token);
+		char *u = malloc(20);
+		strcpy(u, token);
 		if(token == NULL){
 			printf("sendmsg: you have specify target user\n");
 			continue;
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
 			strcat(m, token);
 			token = strtok(NULL, " ");
 		}
-		sendmsg(uName, usr, m)
+		sendmsg(uName, u, m);
 
 		continue;
 	}
